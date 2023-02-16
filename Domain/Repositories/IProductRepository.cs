@@ -4,5 +4,5 @@ namespace Domain.Repositories;
 
 public interface IProductRepository : IRepositoryBase<Product>
 {
-
+    List<Product> GetAllProducts();
 }

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-public class CartController : ApiControllerBase
+public class CategoryController : ApiControllerBase
 {
     [HttpGet]
     public ActionResult Get(){
