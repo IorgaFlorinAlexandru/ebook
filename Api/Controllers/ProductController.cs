@@ -14,24 +14,28 @@ public class ProductController : ApiControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Product>> Get(){
+    public ActionResult<List<Product>> Get()
+    {
         return Ok(_productService.GetAllProducts());
     }
 
     [HttpPost]
-    public ActionResult Post([FromBody]Product product){
+    public ActionResult Post([FromBody] Product product)
+    {
         _productService.AddProduct(product);
 
         return Ok();
     }
 
     [HttpPut]
-    public ActionResult Put(){
+    public ActionResult Put()
+    {
         throw new NotImplementedException();
     }
 
     [HttpDelete]
-    public ActionResult Delete(){
+    public ActionResult Delete()
+    {
         throw new NotImplementedException();
     }
 

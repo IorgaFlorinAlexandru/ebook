@@ -27,8 +27,8 @@ public class ProductService : IProductService
     public Product GetProductById(Guid Id)
     {
         var product = _repository.Product.FindByCondition(x => x.Id == Id).FirstOrDefault();
-        
-        if(product == null) throw new Exception("Not Found");
+
+        if (product == null) throw new Exception("Not Found");
 
         return product;
     }
@@ -36,8 +36,8 @@ public class ProductService : IProductService
     public void RemoveProduct(Guid Id)
     {
         var product = _repository.Product.FindByCondition(x => x.Id == Id).FirstOrDefault();
-        
-        if(product == null) throw new Exception("Not Found");
+
+        if (product == null) throw new Exception("Not Found");
 
         _repository.Product.Delete(product);
 
