@@ -12,42 +12,42 @@ public class ProductService : IProductService
         _repository = repository;
     }
 
-    public void AddProduct(Product product)
+    public async Task AddProductAsync(Product product)
     {
-        _repository.Product.Create(product);
+        _repository.Product.CreateProduct(product);
 
-        _repository.Save();
+        await _repository.SaveAsync();
     }
 
-    public List<Product> GetAllProducts()
+    public async Task< List<Product>> GetAllProductsAsync()
     {
-        return _repository.Product.GetAllProducts();
+        return await _repository.Product.GetAllProductsAsync();
     }
 
-    public Product GetProductById(Guid Id)
+    public async Task<Product> GetProductByIdAsync(Guid Id)
     {
-        var product = _repository.Product.FindByCondition(x => x.Id == Id).FirstOrDefault();
+        var product = await _repository.Product.GetProductByIdAsync(Id);
 
         if (product == null) throw new Exception("Not Found");
 
         return product;
     }
 
-    public void RemoveProduct(Guid Id)
+    public async Task RemoveProductAsync(Guid Id)
     {
-        var product = _repository.Product.FindByCondition(x => x.Id == Id).FirstOrDefault();
+        var product = await _repository.Product.GetProductByIdAsync(Id);
 
         if (product == null) throw new Exception("Not Found");
 
-        _repository.Product.Delete(product);
+        _repository.Product.RemoveProduct(product);
 
-        _repository.Save();
+        await _repository.SaveAsync();
     }
 
-    public void UpdateProduct(Product product)
+    public async Task UpdateProductAsync(Product product)
     {
-        _repository.Product.Update(product);
+        _repository.Product.UpdateProduct(product);
 
-        _repository.Save();
+        await _repository.SaveAsync();
     }
 }

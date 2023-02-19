@@ -14,15 +14,15 @@ public class ProductController : ApiControllerBase
     }
 
     [HttpGet]
-    public ActionResult<List<Product>> Get()
+    public async Task<ActionResult<List<Product>>> Get()
     {
-        return Ok(_productService.GetAllProducts());
+        return Ok(await _productService.GetAllProductsAsync());
     }
 
     [HttpPost]
-    public ActionResult Post([FromBody] Product product)
+    public async Task<ActionResult<Product>> Post([FromBody] Product product)
     {
-        _productService.AddProduct(product);
+        await _productService.AddProductAsync(product);
 
         return Ok();
     }

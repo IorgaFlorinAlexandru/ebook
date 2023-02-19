@@ -7,5 +7,5 @@ public interface IRepositoryWrapper
     ICartRepository Cart { get; }
     IOrderRepository Order { get; }
     void Save();
-    void SaveAsync(CancellationToken cancellationToken);
+    Task SaveAsync();
 }

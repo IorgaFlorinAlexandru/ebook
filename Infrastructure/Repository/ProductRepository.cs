@@ -12,8 +12,33 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
     }
 
-    public List<Product> GetAllProducts()
+    public async Task<List<Product>> GetAllProductsAsync()
     {
-        return FindAll().Include(p => p.Category).AsNoTracking().ToList();
+        return await FindAll().AsNoTracking().ToListAsync();
+    }
+
+    public async Task<Product?> GetProductByIdAsync(Guid Id)
+    {
+        return await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
+    }
+
+    public async Task<Product?> GetProductWithCategory(Guid Id)
+    {
+        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).FirstOrDefaultAsync();
+    }
+
+    public void CreateProduct(Product product)
+    {
+        Create(product);
+    }
+
+    public void RemoveProduct(Product product)
+    {
+        RemoveProduct(product);
+    }
+
+    public void UpdateProduct(Product product)
+    {
+        UpdateProduct(product);
     }
 }

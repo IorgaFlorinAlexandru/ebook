@@ -4,9 +4,9 @@ namespace Application.Interfaces;
 
 public interface IProductService
 {
-    List<Product> GetAllProducts();
-    Product GetProductById(Guid Id);
-    void AddProduct(Product product);
-    void UpdateProduct(Product product);
-    void RemoveProduct(Guid Id);
+    Task<List<Product>> GetAllProductsAsync();
+    Task<Product> GetProductByIdAsync(Guid Id);
+    Task AddProductAsync(Product product);
+    Task UpdateProductAsync(Product product);
+    Task RemoveProductAsync(Guid Id);
 }
