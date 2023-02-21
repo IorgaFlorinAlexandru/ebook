@@ -17,11 +17,18 @@ public class ProductService : IProductService
         _mapper = mapper;
     }
 
-    public async Task AddProductAsync(Product product)
+    public async Task<ProductDto> AddProductAsync(CreateProductDto product)
     {
-        _repository.Product.CreateProduct(product);
+        var productEntity = _mapper.Map<Product>(product);
+
+        _repository.Product.CreateProduct(productEntity);
 
         await _repository.SaveAsync();
+        
+        var createdProduct = _mapper.Map<ProductDto>(productEntity);
+
+        return createdProduct;
+
     }
 
     public async Task< List<ProductDto>> GetAllProductsAsync()

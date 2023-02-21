@@ -41,13 +41,13 @@ public class ProductController : ApiControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Product>> Post([FromBody] Product product)
+    public async Task<ActionResult<ProductDto>> Post([FromBody] CreateProductDto product)
     {
+            var result = await _productService.AddProductAsync(product);
+
+            return CreatedAtRoute("", new { id = result.Id }, result);
         try
         {
-            await _productService.AddProductAsync(product);
-
-            return CreatedAtRoute("", new { id = product.Id }, product);
         }
         catch (Exception e)
         {
@@ -62,6 +62,23 @@ public class ProductController : ApiControllerBase
         try
         {
             await _productService.UpdatePrice(Id,price);
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return HandleException(e);
+        }
+    }
+
+    //TODO CATEGORY CONTROLLER + SERVICE + REPO
+    [HttpPatch("{Id}/changeCategory")]
+    public async Task<ActionResult> ChangeCategory(Guid Id,[FromBody] Guid CategoryId)
+    {
+        try
+        {
+            await Task.Delay(300);
+            //await _productService.UpdatePrice(Id,price);
 
             return Ok();
         }
