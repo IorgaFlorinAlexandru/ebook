@@ -43,11 +43,11 @@ public class ProductController : ApiControllerBase
     [HttpPost]
     public async Task<ActionResult<ProductDto>> Post([FromBody] CreateProductDto product)
     {
+        try
+        {
             var result = await _productService.AddProductAsync(product);
 
             return CreatedAtRoute("", new { id = result.Id }, result);
-        try
-        {
         }
         catch (Exception e)
         {
