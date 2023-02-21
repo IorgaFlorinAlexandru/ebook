@@ -19,12 +19,12 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
 
     public async Task<Product?> GetProductByIdAsync(Guid Id)
     {
-        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).FirstOrDefaultAsync();
+        return await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
     }
 
-    public async Task<Product?> GetProductWithCategory(Guid Id)
+    public async Task<Product?> GetProductByIdWithCategory(Guid Id)
     {
-        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).FirstOrDefaultAsync();
+        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).AsNoTracking().FirstOrDefaultAsync();
     }
 
     public void CreateProduct(Product product)
@@ -34,11 +34,16 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
 
     public void RemoveProduct(Product product)
     {
-        RemoveProduct(product);
+        Delete(product);
     }
 
     public void UpdateProduct(Product product)
     {
-        UpdateProduct(product);
+        Update(product);
+    }
+
+    public Task<List<Product>> GetProductsByFilters()
+    {
+        throw new NotImplementedException();
     }
 }

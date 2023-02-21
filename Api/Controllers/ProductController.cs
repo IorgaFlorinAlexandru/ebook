@@ -1,3 +1,4 @@
+using Application.DataTransferObjects;
 using Application.Interfaces;
 using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,7 @@ public class ProductController : ApiControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> Get()
+    public async Task<ActionResult<List<ProductDto>>> Get()
     {
         try
         {
@@ -27,7 +28,7 @@ public class ProductController : ApiControllerBase
     }
 
     [HttpGet("{Id}")]
-    public async Task<ActionResult<Product>> GetById(Guid Id)
+    public async Task<ActionResult<ProductDto>> GetById(Guid Id)
     {
         try
         {
@@ -47,6 +48,22 @@ public class ProductController : ApiControllerBase
             await _productService.AddProductAsync(product);
 
             return CreatedAtRoute("", new { id = product.Id }, product);
+        }
+        catch (Exception e)
+        {
+            return HandleException(e);
+        }
+    }
+
+
+    [HttpPatch("{Id}/updatePrice")]
+    public async Task<ActionResult> UpdatePrice(Guid Id,[FromBody] decimal price)
+    {
+        try
+        {
+            await _productService.UpdatePrice(Id,price);
+
+            return Ok();
         }
         catch (Exception e)
         {
