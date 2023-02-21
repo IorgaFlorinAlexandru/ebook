@@ -19,7 +19,7 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
 
     public async Task<Product?> GetProductByIdAsync(Guid Id)
     {
-        return await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
+        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).FirstOrDefaultAsync();
     }
 
     public async Task<Product?> GetProductWithCategory(Guid Id)

@@ -8,6 +8,7 @@ public static class ConfigureApplication
 {
     public static IServiceCollection ConfigureApplicationServices(this IServiceCollection services)
     {
+        // services.AddAutoMapper(typeof(Program));
         services.AddScoped<IProductService,ProductService>();
 
         return services;

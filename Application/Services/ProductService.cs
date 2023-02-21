@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Repositories;
 
 namespace Application.Services;
@@ -28,7 +29,7 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
-        if (product == null) throw new Exception("Not Found");
+        if (product == null) throw new NotFoundException(nameof(Product),Id.ToString());
 
         return product;
     }
@@ -37,7 +38,7 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
-        if (product == null) throw new Exception("Not Found");
+        if (product == null) throw new NotFoundException(nameof(Product),Id.ToString());
 
         _repository.Product.RemoveProduct(product);
 
