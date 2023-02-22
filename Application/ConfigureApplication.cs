@@ -11,6 +11,8 @@ public static class ConfigureApplication
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<IProductService,ProductService>();
+        services.AddScoped<ICategoryService,CategoryService>();
+
 
         return services;
     }
