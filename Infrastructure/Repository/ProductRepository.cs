@@ -14,7 +14,7 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
 
     public async Task<List<Product>> GetAllProductsAsync()
     {
-        return await FindAll().AsNoTracking().ToListAsync();
+        return await FindAll().Include(x => x.Category).AsNoTracking().ToListAsync();
     }
 
     public async Task<Product?> GetProductByIdAsync(Guid Id)

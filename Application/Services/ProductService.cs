@@ -24,14 +24,14 @@ public class ProductService : IProductService
         _repository.Product.CreateProduct(productEntity);
 
         await _repository.SaveAsync();
-        
+
         var createdProduct = _mapper.Map<ProductDto>(productEntity);
 
         return createdProduct;
 
     }
 
-    public async Task< List<ProductDto>> GetAllProductsAsync()
+    public async Task<List<ProductDto>> GetAllProductsAsync()
     {
         var products = await _repository.Product.GetAllProductsAsync();
 
@@ -44,7 +44,7 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdWithCategory(Id);
 
-        if (product == null) throw new NotFoundException(nameof(Product),Id.ToString());
+        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
 
         var productResult = _mapper.Map<ProductDto>(product);
 
@@ -55,7 +55,7 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
-        if (product == null) throw new NotFoundException(nameof(Product),Id.ToString());
+        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
 
         _repository.Product.RemoveProduct(product);
 
@@ -66,9 +66,26 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
-        if (product == null) throw new NotFoundException(nameof(Product),Id.ToString());
+        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
 
         product.Price = price;
+
+        _repository.Product.UpdateProduct(product);
+
+        await _repository.SaveAsync();
+    }
+
+    public async Task UpdateCategory(Guid Id, Guid categoryId)
+    {
+        var product = await _repository.Product.GetProductByIdAsync(Id);
+
+        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
+
+        var category = await _repository.Category.GetCategoryById(categoryId);
+
+        if (category == null) throw new NotFoundException(nameof(Category), Id.ToString());
+
+        product.Category = category;
 
         _repository.Product.UpdateProduct(product);
 

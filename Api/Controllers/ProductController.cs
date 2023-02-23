@@ -77,8 +77,7 @@ public class ProductController : ApiControllerBase
     {
         try
         {
-            await Task.Delay(300);
-            //await _productService.UpdatePrice(Id,price);
+            await _productService.UpdateCategory(Id,CategoryId);
 
             return Ok();
         }
@@ -88,14 +87,14 @@ public class ProductController : ApiControllerBase
         }
     }
 
-    [HttpPut]
-    public ActionResult Put()
+    [HttpPut("{id}")]
+    public ActionResult Put(Guid id)
     {
         throw new NotImplementedException();
     }
 
-    [HttpDelete]
-    public ActionResult Delete()
+    [HttpDelete("{id}")]
+    public ActionResult Delete(Guid id)
     {
         throw new NotImplementedException();
     }
