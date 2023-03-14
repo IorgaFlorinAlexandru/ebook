@@ -28,7 +28,6 @@ public class ProductService : IProductService
         var createdProduct = _mapper.Map<ProductDto>(productEntity);
 
         return createdProduct;
-
     }
 
     public async Task<List<ProductDto>> GetAllProductsAsync()
@@ -62,7 +61,7 @@ public class ProductService : IProductService
         await _repository.SaveAsync();
     }
 
-    public async Task UpdatePrice(Guid Id, decimal price)
+    public async Task UpdatePriceAsync(Guid Id, decimal price)
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
@@ -75,7 +74,7 @@ public class ProductService : IProductService
         await _repository.SaveAsync();
     }
 
-    public async Task UpdateCategory(Guid Id, Guid categoryId)
+    public async Task UpdateCategoryAsync(Guid Id, Guid categoryId)
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 

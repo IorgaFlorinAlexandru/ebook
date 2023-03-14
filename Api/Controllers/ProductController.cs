@@ -1,6 +1,5 @@
 using Application.DataTransferObjects;
 using Application.Interfaces;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
@@ -57,11 +56,11 @@ public class ProductController : ApiControllerBase
 
 
     [HttpPatch("{Id}/updatePrice")]
-    public async Task<ActionResult> UpdatePrice(Guid Id,[FromBody] decimal price)
+    public async Task<ActionResult> UpdatePrice(Guid Id, [FromBody] decimal price)
     {
         try
         {
-            await _productService.UpdatePrice(Id,price);
+            await _productService.UpdatePriceAsync(Id, price);
 
             return Ok();
         }
@@ -71,15 +70,28 @@ public class ProductController : ApiControllerBase
         }
     }
 
-    //TODO CATEGORY CONTROLLER + SERVICE + REPO
     [HttpPatch("{Id}/changeCategory")]
-    public async Task<ActionResult> ChangeCategory(Guid Id,[FromBody] Guid CategoryId)
+    public async Task<ActionResult> ChangeCategory(Guid Id, [FromBody] Guid CategoryId)
     {
         try
         {
-            await _productService.UpdateCategory(Id,CategoryId);
+            await _productService.UpdateCategoryAsync(Id, CategoryId);
 
             return Ok();
+        }
+        catch (Exception e)
+        {
+            return HandleException(e);
+        }
+    }
+
+    [HttpPatch("{Id}/image")]
+    public async Task<ActionResult> ChangeImageOfProduct(Guid Id, [FromBody] string ImageUrl)
+    {
+        try
+        {
+            await Task.Delay(3000);
+            throw new NotImplementedException();
         }
         catch (Exception e)
         {

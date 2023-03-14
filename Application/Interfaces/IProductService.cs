@@ -10,6 +10,6 @@ public interface IProductService
     Task<ProductDto> AddProductAsync(CreateProductDto product);
     Task UpdateProductAsync(Product product);
     Task RemoveProductAsync(Guid Id);
-    Task UpdatePrice(Guid Id, decimal price);
-    Task UpdateCategory(Guid Id, Guid categoryId);
+    Task UpdatePriceAsync(Guid Id, decimal price);
+    Task UpdateCategoryAsync(Guid Id, Guid categoryId);
 }

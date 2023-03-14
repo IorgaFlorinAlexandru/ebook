@@ -10,5 +10,6 @@ public class Order
     public OrderStatus Status { get; set; }
     public Guid AddressId { get; set; }
     public Address Address { get; set; } = null!;
+    public List<OrderItem> Items { get; set; } = null!;
     public decimal TotalCost { get; set; }
 }
