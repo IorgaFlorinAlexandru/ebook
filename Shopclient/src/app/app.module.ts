@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { CategoriesModule } from './categories/categories.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CategoriesModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatSidenavModule
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

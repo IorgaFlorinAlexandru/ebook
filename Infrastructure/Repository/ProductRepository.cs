@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -17,14 +18,22 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
         return await FindAll().Include(x => x.Category).AsNoTracking().ToListAsync();
     }
 
-    public async Task<Product?> GetProductByIdAsync(Guid Id)
+    public async Task<Product> GetProductByIdAsync(Guid Id)
     {
-        return await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
+        var product = await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
+
+        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
+
+        return product;
     }
 
-    public async Task<Product?> GetProductByIdWithCategory(Guid Id)
+    public async Task<Product> GetProductByIdWithCategory(Guid Id)
     {
-        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).AsNoTracking().FirstOrDefaultAsync();
+        var product = await FindByCondition(x => x.Id == Id).Include(x => x.Category).AsNoTracking().FirstOrDefaultAsync();
+
+        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
+
+        return product;
     }
 
     public void CreateProduct(Product product)

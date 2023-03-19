@@ -43,8 +43,6 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdWithCategory(Id);
 
-        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
-
         var productResult = _mapper.Map<ProductDto>(product);
 
         return productResult;
@@ -54,8 +52,6 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
-        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
-
         _repository.Product.RemoveProduct(product);
 
         await _repository.SaveAsync();
@@ -64,8 +60,6 @@ public class ProductService : IProductService
     public async Task UpdatePriceAsync(Guid Id, decimal price)
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
-
-        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
 
         product.Price = price;
 
@@ -78,11 +72,7 @@ public class ProductService : IProductService
     {
         var product = await _repository.Product.GetProductByIdAsync(Id);
 
-        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
-
         var category = await _repository.Category.GetCategoryById(categoryId);
-
-        if (category == null) throw new NotFoundException(nameof(Category), Id.ToString());
 
         product.Category = category;
 
@@ -97,4 +87,5 @@ public class ProductService : IProductService
 
         await _repository.SaveAsync();
     }
+
 }

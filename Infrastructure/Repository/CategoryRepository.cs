@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Exceptions;
 using Domain.Repositories;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -17,9 +18,13 @@ public class CategoryRepository : RepositoryBase<Category>, ICategoryRepository
         return await FindAll().AsNoTracking().ToListAsync();
     }
 
-    public async Task<Category?> GetCategoryById(Guid Id)
+    public async Task<Category> GetCategoryById(Guid Id)
     {
-        return await FindByCondition(x => x.Id == Id).AsNoTracking().FirstOrDefaultAsync();
+        var category = await FindByCondition(x => x.Id == Id).AsNoTracking().FirstOrDefaultAsync();
+
+        if (category == null) throw new NotFoundException(nameof(Category), Id.ToString());
+
+        return category;
     }
 
     public void CreateCategory(Category category)
