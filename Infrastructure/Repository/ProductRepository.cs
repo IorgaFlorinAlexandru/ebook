@@ -18,22 +18,14 @@ public class ProductRepository : RepositoryBase<Product>, IProductRepository
         return await FindAll().Include(x => x.Category).AsNoTracking().ToListAsync();
     }
 
-    public async Task<Product> GetProductByIdAsync(Guid Id)
+    public async Task<Product?> GetProductByIdAsync(Guid Id)
     {
-        var product = await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
-
-        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
-
-        return product;
+        return await FindByCondition(x => x.Id == Id).FirstOrDefaultAsync();
     }
 
-    public async Task<Product> GetProductByIdWithCategory(Guid Id)
+    public async Task<Product?> GetProductByIdWithCategory(Guid Id)
     {
-        var product = await FindByCondition(x => x.Id == Id).Include(x => x.Category).AsNoTracking().FirstOrDefaultAsync();
-
-        if (product == null) throw new NotFoundException(nameof(Product), Id.ToString());
-
-        return product;
+        return await FindByCondition(x => x.Id == Id).Include(x => x.Category).AsNoTracking().FirstOrDefaultAsync();
     }
 
     public void CreateProduct(Product product)

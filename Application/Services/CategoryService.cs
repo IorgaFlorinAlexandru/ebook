@@ -31,6 +31,8 @@ public class CategoryService : ICategoryService
     {
         var categoryEntity = await _repository.Category.GetCategoryById(Id);
 
+        if (categoryEntity == null) throw new NotFoundException(nameof(Category), Id.ToString());
+
         var category = _mapper.Map<CategoryDto>(categoryEntity);
 
         return category;
@@ -53,6 +55,8 @@ public class CategoryService : ICategoryService
     {
         var categoryEntity = await _repository.Category.GetCategoryById(Id);
 
+        if (categoryEntity == null) throw new NotFoundException(nameof(Category), Id.ToString());
+
         _repository.Category.DeleteCategory(categoryEntity);
 
         await _repository.SaveAsync();
@@ -62,6 +66,8 @@ public class CategoryService : ICategoryService
     public async Task UpdateCategoryAsync(Guid Id, CreateCategoryDto category)
     {
         var categoryEntity = await _repository.Category.GetCategoryById(Id);
+
+        if (categoryEntity == null) throw new NotFoundException(nameof(Category), Id.ToString());
 
         categoryEntity.Name = category.Name;
         categoryEntity.Description = category.Description;
