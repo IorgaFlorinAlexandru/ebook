@@ -1,1 +1,6 @@
-<p>category-menu works!</p>
+<ng-container *ngIf="categories$">
+    <p *ngFor="let category of categories$ | async">{{category.name}}</p>
+</ng-container>
+<ng-template #loading>
+    <p>THIS IS LOADING BITCH</p>
+</ng-template>

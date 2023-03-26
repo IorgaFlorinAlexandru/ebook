@@ -39,7 +39,7 @@ public class ProductService : IProductService
         return productsResult;
     }
 
-    public async Task<ProductDto> GetProductByIdAsync(Guid Id)
+    public async Task<ProductDto> FindProductByIdAsync(Guid Id)
     {
         var product = await _repository.Product.GetProductByIdWithCategory(Id);
 
@@ -82,7 +82,7 @@ public class ProductService : IProductService
 
         var category = await _repository.Category.GetCategoryById(categoryId);
 
-        if (category == null) throw new NotFoundException(nameof(Category), Id.ToString());
+        if (category == null) throw new NotFoundException(nameof(Category), categoryId.ToString());
 
         product.Category = category;
 

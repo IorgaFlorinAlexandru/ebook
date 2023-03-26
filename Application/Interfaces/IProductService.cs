@@ -6,7 +6,7 @@ namespace Application.Interfaces;
 public interface IProductService
 {
     Task<List<ProductDto>> GetAllProductsAsync();
-    Task<ProductDto> GetProductByIdAsync(Guid Id);
+    Task<ProductDto> FindProductByIdAsync(Guid Id);
     Task<ProductDto> AddProductAsync(CreateProductDto product);
     Task UpdateProductAsync(Product product);
     Task RemoveProductAsync(Guid Id);

@@ -31,7 +31,7 @@ public class ProductController : ApiControllerBase
     {
         try
         {
-            return Ok(await _productService.GetProductByIdAsync(Id));
+            return Ok(await _productService.FindProductByIdAsync(Id));
         }
         catch (Exception e)
         {
@@ -55,7 +55,20 @@ public class ProductController : ApiControllerBase
     }
 
 
-    [HttpPatch("{Id}/updatePrice")]
+    [HttpPut("{id}")]
+    public ActionResult Put(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+
+    [HttpPatch("{Id}/price")]
     public async Task<ActionResult> UpdatePrice(Guid Id, [FromBody] decimal price)
     {
         try
@@ -70,7 +83,7 @@ public class ProductController : ApiControllerBase
         }
     }
 
-    [HttpPatch("{Id}/changeCategory")]
+    [HttpPatch("{Id}/category")]
     public async Task<ActionResult> ChangeCategory(Guid Id, [FromBody] Guid CategoryId)
     {
         try
@@ -97,18 +110,6 @@ public class ProductController : ApiControllerBase
         {
             return HandleException(e);
         }
-    }
-
-    [HttpPut("{id}")]
-    public ActionResult Put(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    [HttpDelete("{id}")]
-    public ActionResult Delete(Guid id)
-    {
-        throw new NotImplementedException();
     }
 
 }
