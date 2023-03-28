@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CategoryMenuComponent } from './components/category-menu/category-menu.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule
   ],
   exports: [
     CategoryMenuComponent

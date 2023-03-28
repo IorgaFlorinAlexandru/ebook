@@ -1,5 +1,7 @@
-<ng-container *ngIf="categories$">
-    <p *ngFor="let category of categories$ | async">{{category.name}}</p>
+<ng-container *ngIf="categories$, else loading">
+    <mat-nav-list>
+        <a mat-list-item *ngFor="let category of categories$ | async">{{category.name}}</a>
+    </mat-nav-list>
 </ng-container>
 <ng-template #loading>
     <p>THIS IS LOADING BITCH</p>
