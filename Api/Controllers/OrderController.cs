@@ -2,25 +2,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
-public class OrderController : ApiControllerBase {
+public class OrderController //: ApiControllerBase
+{
 
     [HttpGet]
-    public ActionResult Get(){
+    public ActionResult Get()
+    {
         throw new NotImplementedException();
     }
 
     [HttpPost]
-    public ActionResult Post(){
+    public ActionResult Post()
+    {
         throw new NotImplementedException();
     }
 
     [HttpPut]
-    public ActionResult Put(){
+    public ActionResult Put()
+    {
         throw new NotImplementedException();
     }
 
     [HttpDelete]
-    public ActionResult Delete(){
+    public ActionResult Delete()
+    {
         throw new NotImplementedException();
     }
 

@@ -1,0 +1,16 @@
+<div class="category-list-container">
+    <div class="list-header">
+        <h1>Featured Categories</h1>
+        <button mat-button><span>All articles </span> <mat-icon>chevron_right</mat-icon></button>
+    </div>
+    <ng-container *ngIf="categories$ | async as categories; else loading">
+        <mat-grid-list [cols]="5" rowHeight="200px" gutterSize="4rem">
+            <mat-grid-tile matRipple *ngFor="let item of categories">
+                <Category [category]="item"></Category>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </ng-container>
+    <ng-template #loading>
+        <h1>THE CATEGORIES ARE LOADING</h1>
+    </ng-template>
+</div>

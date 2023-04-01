@@ -1,0 +1,25 @@
+.category{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-right: 2rem;
+    padding-top: 1.5rem;
+    h3{
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+    mat-icon{
+        color:#a200fc;
+        width: 48px;
+        height: 48px;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    p{
+        font-weight: 400;
+        font-size: 1rem;
+        color: #3f3e43;
+    }
+}

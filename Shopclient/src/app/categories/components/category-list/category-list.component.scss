@@ -1,0 +1,21 @@
+mat-grid-tile {
+    background-color: #f8e9ec;
+    
+}
+
+.category-list-container{
+    padding: 10rem;
+    .list-header{
+        display: flex;
+        justify-content: space-between;
+        h1 {
+            margin-bottom: 2rem;
+            font-weight: 500;
+            font-size: 1.7rem;
+        }
+    }
+}
+
+.mat-grid-tile-content{
+    display: block;
+}
