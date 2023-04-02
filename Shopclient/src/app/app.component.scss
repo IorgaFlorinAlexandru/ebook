@@ -1,0 +1,16 @@
+.menu-header{
+    width: 28rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eae8e4;
+    h1{
+        margin: 0;
+        text-transform: uppercase;
+    }
+}
+
+.spacer{
+    flex: 1 1 auto;
+}
