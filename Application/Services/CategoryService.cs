@@ -77,4 +77,17 @@ public class CategoryService : ICategoryService
         await _repository.SaveAsync();
 
     }
+
+    public async Task ToggleFeaturedStatus(Guid Id)
+    {
+        var category = await _repository.Category.GetCategoryById(Id);
+
+        if (category == null) throw new NotFoundException(nameof(Category), Id.ToString());
+
+        category.IsFeatured = !category.IsFeatured;
+
+        _repository.Category.UpdateCategory(category);
+
+        await _repository.SaveAsync();
+    }
 }

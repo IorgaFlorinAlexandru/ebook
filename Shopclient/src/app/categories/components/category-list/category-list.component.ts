@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../../common/models/category';
+import { FeaturedCategory } from '../../common/models/featuredCategory';
 import { CategoryService } from '../../services/category.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { CategoryService } from '../../services/category.service';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit{
-  public categories$ : Observable<Category[]> | undefined = undefined;
+  public categories$ : Observable<FeaturedCategory[]> | undefined = undefined;
 
   constructor(private categoryService: CategoryService) {}
 

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Category } from '../../common/models/category';
+import { FeaturedCategory } from '../../common/models/featuredCategory';
 
 @Component({
   selector: 'Category',
@@ -8,5 +9,5 @@ import { Category } from '../../common/models/category';
 })
 export class CategoryComponent {
 
-  @Input() category! : Category
+  @Input() category! : FeaturedCategory;
 }

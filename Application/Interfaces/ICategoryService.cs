@@ -9,4 +9,5 @@ public interface ICategoryService
     Task<CategoryDto> CreateCategoryAsync(CreateCategoryDto category);
     Task UpdateCategoryAsync(Guid Id, CreateCategoryDto category);
     Task DeleteCategoryAsync(Guid Id);
+    Task ToggleFeaturedStatus(Guid Id);
 }

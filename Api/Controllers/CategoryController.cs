@@ -84,4 +84,19 @@ public class CategoryController : ApiControllerBase
         }
     }
 
+    [HttpPatch("{id}/toggleFeaturedStatus")]
+    public async Task<ActionResult> ToggleFeaturedStatus(Guid id)
+    {
+        try
+        {
+            await _categoryService.ToggleFeaturedStatus(id);
+
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return HandleException(e);
+        }
+    }
+
 }

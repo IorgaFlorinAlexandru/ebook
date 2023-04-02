@@ -5,7 +5,7 @@
     </div>
     <ng-container *ngIf="categories$ | async as categories; else loading">
         <mat-grid-list [cols]="5" rowHeight="200px" gutterSize="4rem">
-            <mat-grid-tile matRipple *ngFor="let item of categories">
+            <mat-grid-tile matRipple *ngFor="let item of categories" [style.background-color]="item.color">
                 <Category [category]="item"></Category>
             </mat-grid-tile>
         </mat-grid-list>
