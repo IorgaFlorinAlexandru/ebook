@@ -50,7 +50,7 @@ export class CategoryService {
       else if(c.name.includes("Arts")){
         icon = "palette";
         color = "#faf1ff";
-        iconColor = "#f79e19";
+        iconColor = "#e4b4ff";
         c.name = "Arts";
       }
       else if(c.name.includes("History")){

@@ -14,3 +14,12 @@
 .spacer{
     flex: 1 1 auto;
 }
+
+mat-toolbar{
+    border-bottom: 1px solid black;
+}
+
+.carousel-container{
+    height: 550px;
+    background-image: url("../assets/images/background-hero.jpg");
+}

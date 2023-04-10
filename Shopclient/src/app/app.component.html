@@ -24,12 +24,17 @@
             <mat-icon>shopping_cart</mat-icon>
         </button>
     </mat-toolbar>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="basic">
         <button mat-icon-button (click)="categoryDrawer.open()">
             <mat-icon>menu</mat-icon>
         </button>
 
     </mat-toolbar>
-
+    <div class="carousel-container">
+        
+    </div>
     <CategoryList></CategoryList>
+    <div style="padding: 10rem;">
+        <Product></Product>
+    </div>
 </mat-drawer-container>
